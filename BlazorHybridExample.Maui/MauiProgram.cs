@@ -1,4 +1,5 @@
 ﻿using BlazorHybridExample.Maui.Data;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace BlazorHybridExample.Maui
@@ -22,7 +23,7 @@ namespace BlazorHybridExample.Maui
 		builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.TryAddTransient<ICoffeeService, CoffeeService>();
 
             return builder.Build();
         }
