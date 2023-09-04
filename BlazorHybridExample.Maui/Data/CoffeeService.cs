@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using BlazorHybridExample.Library.Data;
+using System.Net.Http.Json;
 
 namespace BlazorHybridExample.Maui.Data;
 

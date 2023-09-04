@@ -1,3 +1,3 @@
-﻿namespace BlazorHybridExample.Maui.Data;
+﻿namespace BlazorHybridExample.Library.Data;
 
 public record Coffee(string Name, string Description);

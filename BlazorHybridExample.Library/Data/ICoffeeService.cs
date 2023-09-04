@@ -1,4 +1,4 @@
-﻿namespace BlazorHybridExample.Maui.Data;
+﻿namespace BlazorHybridExample.Library.Data;
 
 public interface ICoffeeService
 {

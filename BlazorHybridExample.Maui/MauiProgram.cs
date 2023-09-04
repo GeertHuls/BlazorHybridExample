@@ -1,4 +1,5 @@
-﻿using BlazorHybridExample.Maui.Data;
+﻿using BlazorHybridExample.Library.Data;
+using BlazorHybridExample.Maui.Data;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
