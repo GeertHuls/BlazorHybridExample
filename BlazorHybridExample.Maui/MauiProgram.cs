@@ -1,5 +1,7 @@
 ﻿using BlazorHybridExample.Library.Data;
+using BlazorHybridExample.Maui.Auth;
 using BlazorHybridExample.Maui.Data;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
@@ -23,8 +25,11 @@ namespace BlazorHybridExample.Maui
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddAuthorizationCore();
+            builder.Services.AddScoped<AuthenticationStateProvider,
+                CustomAuthStateProvider>();
 
-            builder.Services.TryAddTransient<ICoffeeService, CoffeeService>();
+            builder.Services.AddTransient<ICoffeeService, CoffeeService>();
 
             return builder.Build();
         }
