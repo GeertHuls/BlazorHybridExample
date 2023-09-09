@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject AuthenticationStateProvider AuthStateProvider
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid justify-content-center">
         <a class="navbar-brand" href="">
             <img src="logo.png" class="logo" />
@@ -25,15 +27,15 @@
                     </NavLink>
                 </div>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link">
+                    <NavLink class="nav-link" @onclick="Logout" style="cursor: pointer">
                         <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
                     </NavLink>
                 </div>
             </Authorized>
             <NotAuthorized>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link">
-                        <span class="oi oi-account-logout" aria-hidden="true"></span> Login
+                    <NavLink class="nav-link" @onclick="Login" style="cursor: pointer">
+                        <span class="oi oi-account-login" aria-hidden="true"></span> Login
                     </NavLink>
                 </div>
             </NotAuthorized>
@@ -49,5 +51,17 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task Login()
+    {
+        var authStateProvider = (CustomAuthStateProvider) AuthStateProvider;
+        await authStateProvider.LogInAsync();
+    }
+
+    private void Logout()
+    {
+        var authStateProvider = (CustomAuthStateProvider)AuthStateProvider;
+        authStateProvider.Logout();
     }
 }
