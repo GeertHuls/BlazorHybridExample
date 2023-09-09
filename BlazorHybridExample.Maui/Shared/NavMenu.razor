@@ -1,4 +1,5 @@
 ﻿@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavigationManager
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid justify-content-center">
@@ -63,5 +64,6 @@
     {
         var authStateProvider = (CustomAuthStateProvider)AuthStateProvider;
         authStateProvider.Logout();
+        NavigationManager.NavigateTo("");
     }
 }
