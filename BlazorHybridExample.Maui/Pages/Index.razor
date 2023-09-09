@@ -1,5 +1,17 @@
 ﻿@page "/"
+@*
+// You can protect the entire page with the Authorize attribute:
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
+ *@
 
 <h1>Wired brain coffee</h1>
 
-Welcome to the coffee browser app.
+<AuthorizeView>
+    <Authorized>
+        Welcome to the coffee browser app.
+    </Authorized>
+    <NotAuthorized>
+        Please log in.
+    </NotAuthorized>
+</AuthorizeView>
