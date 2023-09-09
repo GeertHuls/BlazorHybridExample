@@ -2,7 +2,7 @@
 @*
 // You can protect the entire page with the Authorize attribute:
 @using Microsoft.AspNetCore.Authorization;
-@attribute [Authorize]
+@attribute [Authorize(Roles="Admin,OtherRole")]
  *@
 
 <h1>Wired brain coffee</h1>
@@ -14,4 +14,10 @@
     <NotAuthorized>
         Please log in.
     </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Admin,OtherRole">
+    <div style="background-color:#444;color:white;padding:10px">
+        This is only visibile for admins.
+    </div>
 </AuthorizeView>
