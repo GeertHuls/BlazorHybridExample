@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BlazorHybridExample.Library.Data;
+using BlazorHybridExample.Wpf.Auth;
+using BlazorHybridExample.Wpf.Data;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
 namespace BlazorHybridExample.Wpf
@@ -12,6 +16,12 @@ namespace BlazorHybridExample.Wpf
 #if DEBUG
             services.AddBlazorWebViewDeveloperTools();
 #endif
+
+            services.AddAuthorizationCore();
+            services.AddScoped<AuthenticationStateProvider,
+                CustomAuthStateProvider>();
+
+            services.AddTransient<ICoffeeService, CoffeeService>();
 
             var serviceProvider = services.BuildServiceProvider();
             // Register service provider with key 'ServiceProvider'
