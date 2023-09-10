@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿using BlazorHybridExample.Library.Auth;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 
 namespace BlazorHybridExample.Maui.Auth;
 
-public class CustomAuthStateProvider : AuthenticationStateProvider
+public class CustomAuthStateProvider : AuthenticationStateProvider, ICustomAuthStateProvider
 {
     private ClaimsPrincipal currentUser = new ClaimsPrincipal(new ClaimsIdentity());
 
