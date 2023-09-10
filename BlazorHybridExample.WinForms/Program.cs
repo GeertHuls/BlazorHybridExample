@@ -1,3 +1,9 @@
+using BlazorHybridExample.Library.Data;
+using BlazorHybridExample.WinForms.Auth;
+using BlazorHybridExample.WinForms.Data;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace BlazorHybridExample.WinForms
 {
     internal static class Program
@@ -8,10 +14,21 @@ namespace BlazorHybridExample.WinForms
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            var services = new ServiceCollection();
+            services.AddWindowsFormsBlazorWebView();
+#if DEBUG
+            services.AddBlazorWebViewDeveloperTools();
+#endif
+            services.AddAuthorizationCore();
+            services.AddScoped<AuthenticationStateProvider,
+                CustomAuthStateProvider>();
+
+            services.AddTransient<ICoffeeService, CoffeeService>();
+
+            var serviceProvider = services.BuildServiceProvider();
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new MainForm(serviceProvider));
         }
     }
 }
